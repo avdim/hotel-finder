@@ -13,7 +13,7 @@ public static class GPS {
 	public float lat;
 }
 
-public class HotelDetails {
+public static class HotelDetails {
 	public String hotelName;
 	public int priceAvg;
 	public int locationId;
