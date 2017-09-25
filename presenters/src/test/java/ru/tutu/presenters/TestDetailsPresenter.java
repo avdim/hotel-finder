@@ -3,7 +3,7 @@ package ru.tutu.presenters;
 import org.junit.Before;
 import org.junit.Test;
 
-import ru.tutu.entities.HotelLookData;
+import ru.tutu.entities.Entities;
 import ru.tutu.use_cases.UseCases;
 
 
@@ -33,7 +33,7 @@ public void testAlwaysSuccess() {
 	verify(useCasesSpy, atLeastOnce()).hotelDetails(anyInt(), anyInt(), (UseCases.DetailsCallback) any());
 
 	verify(view, atLeastOnce()).showLoading();
-	verify(view, atLeastOnce()).showData((HotelLookData.HotelDetails) any());
+	verify(view, atLeastOnce()).showData((Entities.HotelDetails) any());
 	verify(view, atLeastOnce()).hideLoading();
 
 	verify(view, never()).showError((String) any());
@@ -48,6 +48,6 @@ public void testAlwaysFails() {
 	verify(view, atLeastOnce()).showLoading();
 	verify(view, atLeastOnce()).showError((String) any());
 
-	verify(view, never()).showData((HotelLookData.HotelDetails) any());
+	verify(view, never()).showData((Entities.HotelDetails) any());
 }
 }

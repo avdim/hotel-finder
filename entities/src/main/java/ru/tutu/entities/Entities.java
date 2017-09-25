@@ -1,5 +1,5 @@
 package ru.tutu.entities;
-public class HotelLookData {
+public class Entities {
 public static class HotelInfo {
 	public int locationId;
 	public String label;
@@ -12,7 +12,6 @@ public static class GPS {
 	public float lon;
 	public float lat;
 }
-
 public static class HotelDetails {
 	public String hotelName;
 	public int priceAvg;

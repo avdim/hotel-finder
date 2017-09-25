@@ -2,7 +2,7 @@ package ru.tutu.presenters;
 
 import java.util.List;
 
-import ru.tutu.entities.HotelLookData;
+import ru.tutu.entities.Entities;
 import ru.tutu.use_cases.UseCases;
 
 public class MainPresenter {
@@ -15,7 +15,7 @@ public MainPresenter(View view, UseCases useCases) {
 public void searchHotels(String query) {
 	view.showLoading();
 	useCases.lookHotels(query, new UseCases.LookCallback() {
-		public void onSuccess(List<HotelLookData.HotelInfo> hotels) {
+		public void onSuccess(List<Entities.HotelInfo> hotels) {
 			view.hideLoading();
 			view.showHotels(hotels);
 		}
@@ -24,14 +24,14 @@ public void searchHotels(String query) {
 		}
 	});
 }
-public void clickHotel(HotelLookData.HotelInfo hotel) {
+public void clickHotel(Entities.HotelInfo hotel) {
 	view.showDetails(hotel);
 }
 public interface View {
 	void showLoading();
 	void hideLoading();
-	void showHotels(List<HotelLookData.HotelInfo> hotels);
-	void showDetails(HotelLookData.HotelInfo hotel);
+	void showHotels(List<Entities.HotelInfo> hotels);
+	void showDetails(Entities.HotelInfo hotel);
 	void showError(String error);
 }
 }

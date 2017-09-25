@@ -19,7 +19,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-import ru.tutu.entities.HotelLookData;
+import ru.tutu.entities.Entities;
 import ru.tutu.presenters.MainPresenter;
 
 public class MainActivity extends AppCompatActivity implements MainPresenter.View {
@@ -60,14 +60,14 @@ public void showLoading() {
 public void hideLoading() {
 
 }
-public void showHotels(final List<HotelLookData.HotelInfo> hotels) {
+public void showHotels(final List<Entities.HotelInfo> hotels) {
 	recyclerView.setAdapter(new RecyclerView.Adapter<ViewHolder>() {
 		public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 			View modelView = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_item, parent, false);
 			return new ViewHolder(modelView);
 		}
 		public void onBindViewHolder(ViewHolder holder, final int position) {
-			final HotelLookData.HotelInfo hotel = hotels.get(position);
+			final Entities.HotelInfo hotel = hotels.get(position);
 			holder.txt.setText(hotel.fullName);
 			String pictureUrl = HotelLookApi.SMALL_PICTURE_URL_FORMAT.replace("{hotel_id}", String.valueOf(hotel.id));
 			Picasso.with(MainActivity.this).load(pictureUrl).into(holder.img);
@@ -82,7 +82,7 @@ public void showHotels(final List<HotelLookData.HotelInfo> hotels) {
 		}
 	});
 }
-public void showDetails(HotelLookData.HotelInfo hotel) {
+public void showDetails(Entities.HotelInfo hotel) {
 	Intent intent = new Intent(this, HotelDetailsActivity.class);
 	intent.putExtra(HotelDetailsActivity.INTENT_EXTRA_PARAM_LOCATION_ID, hotel.locationId);
 	intent.putExtra(HotelDetailsActivity.INTENT_EXTRA_PARAM_HOTEL_ID, hotel.id);

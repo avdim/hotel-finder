@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
-import ru.tutu.entities.HotelLookData;
+import ru.tutu.entities.Entities;
 import ru.tutu.presenters.DetailsPresenter;
 
 public class HotelDetailsActivity extends AppCompatActivity implements DetailsPresenter.View {
@@ -42,7 +42,7 @@ public void showLoading() {
 public void hideLoading() {
 
 }
-public void showData(HotelLookData.HotelDetails data) {
+public void showData(Entities.HotelDetails data) {
 	if(data == null) {
 		showError("missing hotel data");
 		return;

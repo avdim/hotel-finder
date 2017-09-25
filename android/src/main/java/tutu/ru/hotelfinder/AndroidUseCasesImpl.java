@@ -8,7 +8,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import ru.tutu.entities.HotelLookData;
+import ru.tutu.entities.Entities;
 
 public class AndroidUseCasesImpl implements ru.tutu.use_cases.UseCases {
 
@@ -34,11 +34,11 @@ public void hotelDetails(int locationId, int hotelId, final DetailsCallback call
 	dateString(checkIn);
 	GregorianCalendar checkOut = new GregorianCalendar();
 	checkOut.add(Calendar.DAY_OF_MONTH, 1);
-	api.details(locationId, hotelId, dateString(checkIn), dateString(checkOut)).enqueue(new Callback<HotelLookData.HotelDetails>() {
-		public void onResponse(Call<HotelLookData.HotelDetails> call, Response<HotelLookData.HotelDetails> response) {
+	api.details(locationId, hotelId, dateString(checkIn), dateString(checkOut)).enqueue(new Callback<Entities.HotelDetails>() {
+		public void onResponse(Call<Entities.HotelDetails> call, Response<Entities.HotelDetails> response) {
 			callback.onSuccess(response.body());
 		}
-		public void onFailure(Call<HotelLookData.HotelDetails> call, Throwable t) {
+		public void onFailure(Call<Entities.HotelDetails> call, Throwable t) {
 			callback.onError("eror while loadinng hotelDetails");
 		}
 	});
@@ -48,7 +48,7 @@ public static class LookObject {
 	public ResultsObject results;
 }
 public static class ResultsObject {
-	public List<HotelLookData.HotelInfo> hotels;
+	public List<Entities.HotelInfo> hotels;
 }
 
 public static String dateString(Calendar calendar) {

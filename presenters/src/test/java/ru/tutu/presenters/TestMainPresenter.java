@@ -6,7 +6,7 @@ import org.mockito.ArgumentMatchers;
 
 import java.util.List;
 
-import ru.tutu.entities.HotelLookData;
+import ru.tutu.entities.Entities;
 import ru.tutu.use_cases.UseCases;
 
 
@@ -37,7 +37,7 @@ public void testAlwaysSuccess() {
 	verify(useCasesSpy, atLeastOnce()).lookHotels(anyString(), (UseCases.LookCallback) any());
 
 	verify(view, atLeastOnce()).showLoading();
-	verify(view, atLeastOnce()).showHotels(ArgumentMatchers.<List<HotelLookData.HotelInfo>>any());
+	verify(view, atLeastOnce()).showHotels(ArgumentMatchers.<List<Entities.HotelInfo>>any());
 	verify(view, atLeastOnce()).hideLoading();
 
 	verify(view, never()).showError((String) any());
@@ -53,6 +53,6 @@ public void testAlwaysFails() {
 	verify(view, atLeastOnce()).showLoading();
 	verify(view, atLeastOnce()).showError((String) any());
 
-	verify(view, never()).showHotels(ArgumentMatchers.<List<HotelLookData.HotelInfo>>any());
+	verify(view, never()).showHotels(ArgumentMatchers.<List<Entities.HotelInfo>>any());
 }
 }

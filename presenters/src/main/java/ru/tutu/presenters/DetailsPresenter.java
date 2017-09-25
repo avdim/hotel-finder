@@ -1,6 +1,6 @@
 package ru.tutu.presenters;
 
-import ru.tutu.entities.HotelLookData;
+import ru.tutu.entities.Entities;
 import ru.tutu.use_cases.UseCases;
 
 public class DetailsPresenter {
@@ -11,7 +11,7 @@ public DetailsPresenter(final View view, UseCases useCases, int locationId, int 
 	this.useCases = useCases;
 	view.showLoading();
 	useCases.hotelDetails(locationId, hotelId, new UseCases.DetailsCallback() {
-		public void onSuccess(HotelLookData.HotelDetails details) {
+		public void onSuccess(Entities.HotelDetails details) {
 			view.hideLoading();
 			view.showData(details);
 		}
@@ -23,7 +23,7 @@ public DetailsPresenter(final View view, UseCases useCases, int locationId, int 
 public interface View {
 	void showLoading();
 	void hideLoading();
-	void showData(HotelLookData.HotelDetails data);
+	void showData(Entities.HotelDetails data);
 	void showError(String error);
 }
 }
