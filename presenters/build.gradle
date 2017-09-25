@@ -1,0 +1,7 @@
+apply plugin: 'java'
+
+dependencies {
+  compile project(':use_cases')
+}
+sourceCompatibility = "1.7"
+targetCompatibility = "1.7"
