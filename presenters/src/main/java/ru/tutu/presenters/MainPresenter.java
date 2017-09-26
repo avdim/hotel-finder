@@ -14,7 +14,7 @@ public MainPresenter(View view, UseCases useCases) {
 }
 public void searchHotels(String query) {
 	view.showLoading();
-	useCases.lookHotels(query, new UseCases.LookCallback() {
+	useCases.lookHotels(query, new UseCases.Gateway.LookCallback() {
 		public void onSuccess(List<Entities.HotelInfo> hotels) {
 			view.hideLoading();
 			view.showHotels(hotels);

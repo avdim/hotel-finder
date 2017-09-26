@@ -6,3 +6,14 @@ dependencies {
 }
 sourceCompatibility = "1.7"
 targetCompatibility = "1.7"
+
+configurations {
+  testArtifacts.extendsFrom testRuntime
+}
+task testJar(type: Jar) {
+  classifier "test"
+  from sourceSets.test.output
+}
+artifacts {
+  testArtifacts testJar
+}

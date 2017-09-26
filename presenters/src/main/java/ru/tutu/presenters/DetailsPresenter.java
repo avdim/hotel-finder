@@ -10,7 +10,7 @@ public DetailsPresenter(final View view, UseCases useCases, int locationId, int 
 	this.view = view;
 	this.useCases = useCases;
 	view.showLoading();
-	useCases.hotelDetails(locationId, hotelId, new UseCases.DetailsCallback() {
+	useCases.hotelDetails(locationId, hotelId, new UseCases.Gateway.DetailsCallback() {
 		public void onSuccess(Entities.HotelDetails details) {
 			view.hideLoading();
 			view.showData(details);

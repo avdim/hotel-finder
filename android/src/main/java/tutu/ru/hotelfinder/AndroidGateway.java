@@ -10,10 +10,10 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import ru.tutu.entities.Entities;
 
-public class AndroidUseCasesImpl implements ru.tutu.use_cases.UseCases {
+public class AndroidGateway implements ru.tutu.use_cases.UseCases.Gateway {
 
 private final HotelLookApi api;
-public AndroidUseCasesImpl() {
+public AndroidGateway() {
 	api = new Retrofit.Builder()
 			.baseUrl(HotelLookApi.BASE_URL)
 			.addConverterFactory(GsonConverterFactory.create())
@@ -30,8 +30,8 @@ public void lookHotels(String query, final LookCallback callback) {
 	});
 }
 public void hotelDetails(int locationId, int hotelId, final DetailsCallback callback) {
+	//Для того чтобы получить цену номера гостиницы нужно передать дату заезда и выезда. Для простоты рассматриваем прибывание в гостинице на 1 день.
 	Calendar checkIn = new GregorianCalendar();
-	dateString(checkIn);
 	GregorianCalendar checkOut = new GregorianCalendar();
 	checkOut.add(Calendar.DAY_OF_MONTH, 1);
 	api.details(locationId, hotelId, dateString(checkIn), dateString(checkOut)).enqueue(new Callback<Entities.HotelDetails>() {
@@ -52,6 +52,8 @@ public static class ResultsObject {
 }
 
 public static String dateString(Calendar calendar) {
+	// Специальный формат для нашего api. Обязательно чтобы месяцы и дни состояли из двух цифр:
+	// (неправильно) 2017-9-25 -> 2017-09-25 (правильно)
 	int year = calendar.get(Calendar.YEAR);
 	int month = calendar.get(Calendar.MONTH) + 1;
 	int day = calendar.get(Calendar.DAY_OF_MONTH);

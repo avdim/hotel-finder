@@ -10,7 +10,7 @@ private static UseCases useCases;
 @Override
 public void onCreate() {
 	super.onCreate();
-	useCases = new AndroidUseCasesImpl();
+	useCases = new UseCases(new AndroidGateway());
 }
 public static UseCases getUseCases() {
 	return useCases;

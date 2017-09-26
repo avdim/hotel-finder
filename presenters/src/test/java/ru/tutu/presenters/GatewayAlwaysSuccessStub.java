@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import ru.tutu.entities.Entities;
 import ru.tutu.use_cases.UseCases;
 
-public class UseCasesAlwaysSuccessStub implements UseCases {
+public class GatewayAlwaysSuccessStub implements UseCases.Gateway {
 public void lookHotels(String query, LookCallback callback) {
 	callback.onSuccess(new ArrayList<Entities.HotelInfo>());
 }

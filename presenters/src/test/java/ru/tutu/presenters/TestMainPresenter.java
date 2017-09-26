@@ -30,11 +30,11 @@ public void init() {
 }
 @Test
 public void testAlwaysSuccess() {
-	useCasesSpy = spy(new UseCasesAlwaysSuccessStub());
+	useCasesSpy = spy(new UseCases(new GatewayAlwaysSuccessStub()));
 	presenter = new MainPresenter(view, useCasesSpy);
 	presenter.searchHotels("some query");
 
-	verify(useCasesSpy, atLeastOnce()).lookHotels(anyString(), (UseCases.LookCallback) any());
+	verify(useCasesSpy, atLeastOnce()).lookHotels(anyString(), (UseCases.Gateway.LookCallback) any());
 
 	verify(view, atLeastOnce()).showLoading();
 	verify(view, atLeastOnce()).showHotels(ArgumentMatchers.<List<Entities.HotelInfo>>any());
@@ -44,11 +44,11 @@ public void testAlwaysSuccess() {
 }
 @Test
 public void testAlwaysFails() {
-	useCasesSpy = spy(new UseCasesAlwaysFailsStub());
+	useCasesSpy = spy(new UseCases(new GatewayAlwaysFailsStub()));
 	presenter = new MainPresenter(view, useCasesSpy);
 	presenter.searchHotels("some query");
 
-	verify(useCasesSpy, atLeastOnce()).lookHotels(anyString(), (UseCases.LookCallback) any());
+	verify(useCasesSpy, atLeastOnce()).lookHotels(anyString(), (UseCases.Gateway.LookCallback) any());
 
 	verify(view, atLeastOnce()).showLoading();
 	verify(view, atLeastOnce()).showError((String) any());

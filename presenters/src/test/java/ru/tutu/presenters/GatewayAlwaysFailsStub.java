@@ -1,7 +1,7 @@
 package ru.tutu.presenters;
 import ru.tutu.use_cases.UseCases;
 
-public class UseCasesAlwaysFailsStub implements UseCases {
+public class GatewayAlwaysFailsStub implements UseCases.Gateway {
 public void lookHotels(String query, LookCallback callback) {
 	callback.onError("some error");
 }
