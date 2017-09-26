@@ -7,5 +7,8 @@ gradle test - для Unit тестов
   
 За основу архитектуры взял статью: https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html  
 И вот эти исходники: https://github.com/android10/Android-CleanArchitecture  
-
+  
+Примеры других работ: http://avdim.ru  
+Связаться со мной можно по почте: avdim@mail.ru  
+  
 
