@@ -10,10 +10,10 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import ru.tutu.entities.Entities;
 
-public class AndroidGateway implements ru.tutu.use_cases.UseCases.Gateway {
+public class GatewayImpl implements ru.tutu.use_cases.UseCases.Gateway {
 
 private final HotelLookApi api;
-public AndroidGateway() {
+public GatewayImpl() {
 	api = new Retrofit.Builder()
 			.baseUrl(HotelLookApi.BASE_URL)
 			.addConverterFactory(GsonConverterFactory.create())

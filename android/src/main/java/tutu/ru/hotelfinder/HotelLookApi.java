@@ -10,7 +10,7 @@ String SMALL_PICTURE_URL_FORMAT = "https://photo.hotellook.com/image_v2/limit/h{
 String BIG_PICTURE_URL_FORMAT = "https://photo.hotellook.com/image_v2/limit/h{hotel_id}_3/512.jpg";
 
 @GET("lookup.json?lang=en&lookFor=both&limit=10")
-Call<AndroidGateway.LookObject> lookHotels(@Query("query") String query);
+Call<GatewayImpl.LookObject> lookHotels(@Query("query") String query);
 
 @GET("cache.json?lang=en&currency=usd")
 Call<Entities.HotelDetails> details(@Query("location") int location,
