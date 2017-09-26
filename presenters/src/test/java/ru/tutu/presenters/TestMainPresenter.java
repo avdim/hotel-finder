@@ -7,7 +7,8 @@ import org.mockito.ArgumentMatchers;
 import java.util.List;
 
 import ru.tutu.entities.Entities;
-import ru.tutu.use_cases.UseCases;
+import ru.tutu.use_cases.*;
+import ru.tutu.use_cases.GatewayAlwaysSuccessStub;
 
 
 import static org.mockito.ArgumentMatchers.anyString;
@@ -44,7 +45,7 @@ public void testAlwaysSuccess() {
 }
 @Test
 public void testAlwaysFails() {
-	useCasesSpy = spy(new UseCases(new GatewayAlwaysFailsStub()));
+	useCasesSpy = spy(new UseCases(new ru.tutu.use_cases.GatewayAlwaysFailsStub()));
 	presenter = new MainPresenter(view, useCasesSpy);
 	presenter.searchHotels("some query");
 

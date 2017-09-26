@@ -20,7 +20,7 @@ import org.junit.runner.RunWith;
 import static org.junit.Assert.*;
 
 @RunWith(AndroidJUnit4.class)
-public class UiAutomationgTest {
+public class UiInstrumentationTest {
 private String packageName;
 @Test
 public void useAppContext() throws Exception {
@@ -43,14 +43,14 @@ public void useAppContext() throws Exception {
 	mDevice.wait(Until.hasObject(By.pkg(packageName).depth(0)), 10_000);
 	sleep(4000);
 	mDevice.findObject(new UiSelector().resourceId("tutu.ru.hotelfinder:id/search_button")).click();
-	sleep(2000);
+	sleep(1000);
 	Looper.prepare();
 	final ClipboardManager clipboard = (ClipboardManager) InstrumentationRegistry.getTargetContext().getSystemService(Context.CLIPBOARD_SERVICE);
 	clipboard.setPrimaryClip(ClipData.newHtmlText("simple text", "Питер", "Питер"));
 	mDevice.pressKeyCode(KeyEvent.KEYCODE_V, KeyEvent.META_CTRL_ON);
-	sleep(3000);
+	sleep(2000);
 	mDevice.pressEnter();
-	sleep(8000);
+	sleep(7000);
 	mDevice.findObject(new UiSelector().resourceId("tutu.ru.hotelfinder:id/list_hotel_title")).click();
 	sleep(7000);
 	mDevice.pressBack();

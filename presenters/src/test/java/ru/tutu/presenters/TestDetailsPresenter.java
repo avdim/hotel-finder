@@ -4,7 +4,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import ru.tutu.entities.Entities;
-import ru.tutu.use_cases.UseCases;
+import ru.tutu.use_cases.*;
+import ru.tutu.use_cases.GatewayAlwaysSuccessStub;
+
 
 import static org.mockito.Mockito.*;
 
@@ -33,7 +35,7 @@ public void testAlwaysSuccess() {
 }
 @Test
 public void testAlwaysFails() {
-	useCasesSpy = spy(new UseCases(new GatewayAlwaysFailsStub()));
+	useCasesSpy = spy(new UseCases(new ru.tutu.use_cases.GatewayAlwaysFailsStub()));
 	presenter = new DetailsPresenter(view, useCasesSpy, 0, 0);
 
 	verify(useCasesSpy, atLeastOnce()).hotelDetails(anyInt(), anyInt(), (UseCases.Gateway.DetailsCallback)any());

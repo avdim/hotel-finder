@@ -1,4 +1,4 @@
-package ru.tutu.presenters;
+package ru.tutu.use_cases;
 import ru.tutu.use_cases.UseCases;
 
 public class GatewayAlwaysFailsStub implements UseCases.Gateway {

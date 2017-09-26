@@ -6,8 +6,8 @@ import org.junit.Test;
 import java.util.List;
 
 import ru.tutu.entities.Entities;
-import ru.tutu.presenters.GatewayAlwaysFailsStub;
-import ru.tutu.presenters.GatewayAlwaysSuccessStub;
+import ru.tutu.use_cases.GatewayAlwaysFailsStub;
+import ru.tutu.use_cases.GatewayAlwaysSuccessStub;
 import ru.tutu.use_cases.UseCases;
 
 
