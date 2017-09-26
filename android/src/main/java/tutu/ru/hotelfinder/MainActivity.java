@@ -24,13 +24,17 @@ import ru.tutu.entities.Entities;
 import ru.tutu.presenters.MainPresenter;
 
 public class MainActivity extends AppCompatActivity implements MainPresenter.View {
-
+public static final String QUERY_KEY = "query";
+private String query = "Москва";
 private RecyclerView recyclerView;
 private MainPresenter presenter;
 private ProgressBar progressBar;
 @Override
 protected void onCreate(Bundle savedInstanceState) {
 	super.onCreate(savedInstanceState);
+	if(savedInstanceState != null) {
+		query = savedInstanceState.getString(QUERY_KEY);
+	}
 	setContentView(R.layout.activity_main);
 	Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 	setSupportActionBar(toolbar);
@@ -39,16 +43,16 @@ protected void onCreate(Bundle savedInstanceState) {
 	progressBar = (ProgressBar) findViewById(R.id.progressBar);
 	progressBar.setVisibility(View.INVISIBLE);
 	presenter = new MainPresenter(this, App.getUseCases());
-	presenter.searchHotels("Москва");
+	presenter.searchHotels(query);
 }
-
 @Override
 public boolean onCreateOptionsMenu(Menu menu) {
 	getMenuInflater().inflate(R.menu.menu_main, menu);
 	SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
 	searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-		public boolean onQueryTextSubmit(String query) {
-			presenter.searchHotels(query);
+		public boolean onQueryTextSubmit(String submitQuery) {
+			query = submitQuery;
+			presenter.searchHotels(submitQuery);
 			return true;
 		}
 		public boolean onQueryTextChange(String newText) {
@@ -57,7 +61,6 @@ public boolean onCreateOptionsMenu(Menu menu) {
 	});
 	return true;
 }
-
 public void showLoading() {
 	progressBar.setVisibility(View.VISIBLE);
 }
@@ -92,7 +95,13 @@ public void showDetails(Entities.HotelInfo hotel) {
 	intent.putExtra(HotelDetailsActivity.INTENT_EXTRA_PARAM_HOTEL_ID, hotel.id);
 	startActivity(intent);
 }
-
+public void showError(String error) {
+	Toast.makeText(getApplicationContext(),error,Toast.LENGTH_LONG).show();
+}
+protected void onSaveInstanceState(Bundle outState) {
+	outState.putString(QUERY_KEY, query);
+	super.onSaveInstanceState(outState);
+}
 private static class ViewHolder extends RecyclerView.ViewHolder {
 	final TextView txt;
 	final ImageView img;
@@ -101,8 +110,5 @@ private static class ViewHolder extends RecyclerView.ViewHolder {
 		txt = (TextView) view.findViewById(R.id.list_hotel_title);
 		img = (ImageView) view.findViewById(R.id.list_hotel_image);
 	}
-}
-public void showError(String error) {
-	Toast.makeText(getApplicationContext(),error,Toast.LENGTH_LONG).show();
 }
 }
