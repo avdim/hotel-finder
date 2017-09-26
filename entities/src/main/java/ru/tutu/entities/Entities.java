@@ -5,6 +5,7 @@ public static class HotelInfo {
 	public String label;
 	public int id;
 	public String fullName;
+	public String name;
 	public GPS location;
 	public String locationName;
 }
