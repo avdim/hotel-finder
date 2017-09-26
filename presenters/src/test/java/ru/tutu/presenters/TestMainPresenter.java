@@ -20,40 +20,43 @@ import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 
 public class TestMainPresenter {
-private MainPresenter.View view;
-private UseCases useCasesSpy;
-private MainPresenter presenter;
-@Before
-public void init() {
-	view = mock(MainPresenter.View.class);
-	useCasesSpy = null;
-	presenter = null;
-}
-@Test
-public void testAlwaysSuccess() {
-	useCasesSpy = spy(new UseCases(new GatewayAlwaysSuccessStub()));
-	presenter = new MainPresenter(view, useCasesSpy);
-	presenter.searchHotels("some query");
+    private MainPresenter.View view;
+    private UseCases useCasesSpy;
+    private MainPresenter presenter;
 
-	verify(useCasesSpy, atLeastOnce()).lookHotels(anyString(), (UseCases.Gateway.LookCallback) any());
+    @Before
+    public void init() {
+        view = mock(MainPresenter.View.class);
+        useCasesSpy = null;
+        presenter = null;
+    }
 
-	verify(view, atLeastOnce()).showLoading();
-	verify(view, atLeastOnce()).showHotels(ArgumentMatchers.<List<Entities.HotelInfo>>any());
-	verify(view, atLeastOnce()).hideLoading();
+    @Test
+    public void testAlwaysSuccess() {
+        useCasesSpy = spy(new UseCases(new GatewayAlwaysSuccessStub()));
+        presenter = new MainPresenter(view, useCasesSpy);
+        presenter.searchHotels("some query");
 
-	verify(view, never()).showError((String) any());
-}
-@Test
-public void testAlwaysFails() {
-	useCasesSpy = spy(new UseCases(new ru.tutu.use_cases.GatewayAlwaysFailsStub()));
-	presenter = new MainPresenter(view, useCasesSpy);
-	presenter.searchHotels("some query");
+        verify(useCasesSpy, atLeastOnce()).lookHotels(anyString(), (UseCases.Gateway.LookCallback) any());
 
-	verify(useCasesSpy, atLeastOnce()).lookHotels(anyString(), (UseCases.Gateway.LookCallback) any());
+        verify(view, atLeastOnce()).showLoading();
+        verify(view, atLeastOnce()).showHotels(ArgumentMatchers.<List<Entities.HotelInfo>>any());
+        verify(view, atLeastOnce()).hideLoading();
 
-	verify(view, atLeastOnce()).showLoading();
-	verify(view, atLeastOnce()).showError((String) any());
+        verify(view, never()).showError((String) any());
+    }
 
-	verify(view, never()).showHotels(ArgumentMatchers.<List<Entities.HotelInfo>>any());
-}
+    @Test
+    public void testAlwaysFails() {
+        useCasesSpy = spy(new UseCases(new ru.tutu.use_cases.GatewayAlwaysFailsStub()));
+        presenter = new MainPresenter(view, useCasesSpy);
+        presenter.searchHotels("some query");
+
+        verify(useCasesSpy, atLeastOnce()).lookHotels(anyString(), (UseCases.Gateway.LookCallback) any());
+
+        verify(view, atLeastOnce()).showLoading();
+        verify(view, atLeastOnce()).showError((String) any());
+
+        verify(view, never()).showHotels(ArgumentMatchers.<List<Entities.HotelInfo>>any());
+    }
 }

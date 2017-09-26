@@ -5,14 +5,15 @@ import android.app.Application;
 import ru.tutu.use_cases.UseCases;
 
 public class App extends Application {
-private static UseCases useCases;
+    private static UseCases useCases;
 
-@Override
-public void onCreate() {
-	super.onCreate();
-	useCases = new UseCases(new GatewayImpl());
-}
-public static UseCases getUseCases() {
-	return useCases;
-}
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        useCases = new UseCases(new GatewayImpl());
+    }
+
+    public static UseCases getUseCases() {
+        return useCases;
+    }
 }
