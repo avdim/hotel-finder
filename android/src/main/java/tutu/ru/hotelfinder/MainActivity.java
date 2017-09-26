@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
 
 private RecyclerView recyclerView;
 private MainPresenter presenter;
+private ProgressBar progressBar;
 @Override
 protected void onCreate(Bundle savedInstanceState) {
 	super.onCreate(savedInstanceState);
@@ -34,6 +36,8 @@ protected void onCreate(Bundle savedInstanceState) {
 	setSupportActionBar(toolbar);
 	recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 	recyclerView.setLayoutManager(new LinearLayoutManager(this));
+	progressBar = (ProgressBar) findViewById(R.id.progressBar);
+	progressBar.setVisibility(View.INVISIBLE);
 	presenter = new MainPresenter(this, App.getUseCases());
 	presenter.searchHotels("Москва");
 }
@@ -55,10 +59,10 @@ public boolean onCreateOptionsMenu(Menu menu) {
 }
 
 public void showLoading() {
-
+	progressBar.setVisibility(View.VISIBLE);
 }
 public void hideLoading() {
-
+	progressBar.setVisibility(View.INVISIBLE);
 }
 public void showHotels(final List<Entities.HotelInfo> hotels) {
 	recyclerView.setAdapter(new RecyclerView.Adapter<ViewHolder>() {

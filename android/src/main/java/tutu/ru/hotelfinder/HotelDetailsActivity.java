@@ -2,7 +2,9 @@ package tutu.ru.hotelfinder;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +22,7 @@ private ImageView image;
 private TextView title;
 private TextView stars;
 private TextView price;
+private ProgressBar progressBar;
 @Override
 protected void onCreate(Bundle savedInstanceState) {
 	super.onCreate(savedInstanceState);
@@ -28,19 +31,21 @@ protected void onCreate(Bundle savedInstanceState) {
 	title = (TextView) findViewById(R.id.detailTitle);
 	stars = (TextView) findViewById(R.id.detailStars);
 	price = (TextView) findViewById(R.id.detailPrice);
+	progressBar = (ProgressBar) findViewById(R.id.progressBar);
+	progressBar.setVisibility(View.INVISIBLE);
 	int locationId = getIntent().getIntExtra(INTENT_EXTRA_PARAM_LOCATION_ID, 0);
 	int hotelId = getIntent().getIntExtra(INTENT_EXTRA_PARAM_HOTEL_ID, 0);
 	if(locationId == 0 || hotelId == 0) {
 		showError("bad intent");
 		return;
 	}
-	this.presenter = new DetailsPresenter(this, App.getUseCases(), locationId, hotelId);
+	presenter = new DetailsPresenter(this, App.getUseCases(), locationId, hotelId);
 }
 public void showLoading() {
-
+	progressBar.setVisibility(View.VISIBLE);
 }
 public void hideLoading() {
-
+	progressBar.setVisibility(View.INVISIBLE);
 }
 public void showData(Entities.HotelDetails data) {
 	if(data == null) {
