@@ -5,5 +5,7 @@
   <string name="search_title">Search by name</string>
   <string name="query_hint">City or Hotel</string>
   <string name="gps_fail">Location service unavailable</string>
-  <string name="demo_query">Moscow</string>
+  <string name="demo_query">New York</string>
+  <string name="missing_hotel">missing hotel data</string>
+  <string name="bad_intent">bad intent</string>
 </resources>

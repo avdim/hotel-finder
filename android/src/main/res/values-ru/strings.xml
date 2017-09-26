@@ -2,4 +2,8 @@
 <resources>
   <string name="hotel_picture">картинка номера</string>
   <string name="location_search">поиск по геолокации</string>
+  <string name="demo_query">Москва</string>
+  <string name="gps_fail">Сервис геопозиции недоступен</string>
+  <string name="query_hint">Город или гостиница</string>
+  <string name="search_title">Поиск по названию</string>
 </resources>

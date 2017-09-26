@@ -36,7 +36,7 @@ protected void onCreate(Bundle savedInstanceState) {
 	int locationId = getIntent().getIntExtra(INTENT_EXTRA_PARAM_LOCATION_ID, 0);
 	int hotelId = getIntent().getIntExtra(INTENT_EXTRA_PARAM_HOTEL_ID, 0);
 	if(locationId == 0 || hotelId == 0) {
-		showError("bad intent");
+		showError(getString(R.string.bad_intent));
 		return;
 	}
 	presenter = new DetailsPresenter(this, App.getUseCases(), locationId, hotelId);
@@ -49,7 +49,7 @@ public void hideLoading() {
 }
 public void showData(Entities.HotelDetails data) {
 	if(data == null) {
-		showError("missing hotel data");
+		showError(getString(R.string.missing_hotel));
 		return;
 	}
 	String pictureUrl = HotelLookApi.BIG_PICTURE_URL_FORMAT.replace("{hotel_id}", String.valueOf(data.hotelId));

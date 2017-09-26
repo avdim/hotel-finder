@@ -39,7 +39,7 @@ public void hotelDetails(int locationId, int hotelId, final DetailsCallback call
 			callback.onSuccess(response.body());
 		}
 		public void onFailure(Call<Entities.HotelDetails> call, Throwable t) {
-			callback.onError("eror while loadinng hotelDetails");
+			callback.onError("eror while loading hotelDetails");
 		}
 	});
 }
